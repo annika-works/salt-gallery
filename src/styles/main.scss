@@ -1,7 +1,25 @@
-body {
-    background: white;
+$padding-img: 1rem;
+
+@mixin flexbox ($align, $justify, $width) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    width: $width;
+  }
+
+header {
+    @include flexbox(center, center, 100vw);
 }
 
-h1 {
-    background: red;
+nav {
+    @include flexbox(center, center, 100vw);
+}
+
+main {
+    @include flexbox(center, center, 100vw);
+    flex-wrap: wrap;
+}
+
+main img {
+    padding: $padding-img;
 }
