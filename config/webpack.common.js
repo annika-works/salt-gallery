@@ -1,6 +1,8 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const paths = require('./paths');
+const dotenv = require('dotenv').config({ path: paths.env});
 
 module.exports = {
   // Where webpack looks to start building the bundle
@@ -21,9 +23,14 @@ module.exports = {
     // Generates an HTML file from a template
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
-      title: 'webpack Boilerplate',
+      title: 'Title',
       template: `${paths.src}/template.html`, // template file
       filename: 'index.html', // output file
+    }),
+
+    // dotenv file
+    new webpack.DefinePlugin({
+      "process.env": dotenv.parsed
     }),
   ],
 
