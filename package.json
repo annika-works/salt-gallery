@@ -1,0 +1,40 @@
+{
+  "name": "cicd",
+  "version": "1.0.0",
+  "description": "WRite some COde",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint '**/*.js'",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annika-works/salt-gallery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/annika-works/salt-gallery/issues"
+  },
+  "homepage": "https://github.com/annika-works/salt-gallery#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^5.0.0",
+    "eslint-config-salt": "^1.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^4.0.4",
+    "postcss-preset-env": "^6.7.0",
+    "sass-loader": "^10.0.3",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.1.3",
+    "webpack-cli": "^4.0.0"
+  },
+  "dependencies": {
+    "jest": "^26.5.3"
+  }
+}
