@@ -21,6 +21,7 @@ const maxItems = 10;
 
 const getImages = endpoint => axios.get(endpoint)
   .then(({ data }) => {
+    console.log(data);
     const { results } = data;
     results.forEach(({ urls: images }) => {
       mainElement.innerHTML += `<img src=${images.small}>`;
@@ -32,7 +33,8 @@ const getImages = endpoint => axios.get(endpoint)
 
 if (page <= 1) prevBtn.setAttribute('disabled', 'disabled');
 
-searchBtn.addEventListener('click', () => {
+searchBtn.addEventListener('click', e => {
+  e.preventDefault();
   page = 1;
   search = searchInput.value;
   const endpoint = `${baseUrl}?per_page=${maxItems}&page=${page}&query=${search}&client_id=${API_KEY}`;
