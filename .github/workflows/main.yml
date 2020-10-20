@@ -22,5 +22,4 @@ jobs:
       - name: Runs tests and lint
         run: |
           npm i
-          npm t
           npm run lint
