@@ -48,7 +48,6 @@ nextBtn.addEventListener('click', () => {
   const endpoint = `${baseUrl}?per_page=${maxItems}&page=${page}&query=${search}&client_id=${API_KEY}`;
   mainElement.innerHTML = '';
   if (search) getImages(endpoint);
-  console.log('next', page);
 });
 
 prevBtn.addEventListener('click', () => {
@@ -57,5 +56,8 @@ prevBtn.addEventListener('click', () => {
   const endpoint = `${baseUrl}?per_page=${maxItems}&page=${page}&query=${search}&client_id=${API_KEY}`;
   mainElement.innerHTML = '';
   if (search) getImages(endpoint);
-  console.log('prev', page);
 });
+
+export default {
+  getImages, searchBtn, page, searchInput, search,
+};
