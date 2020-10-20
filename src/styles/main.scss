@@ -28,6 +28,15 @@ nav {
     margin: 4rem 0;
 }
 
+nav input[type="text"] {
+    background: #fff;
+    border: #FFF;
+    border-bottom: 1px solid;
+    border-radius: 2px;
+    height: 22px;
+    width: 20rem;
+}
+
 main {
     @include flexbox(center, center, 100%);
     flex-wrap: wrap;
@@ -41,11 +50,19 @@ nav.buttons {
     @include flexbox(center, space-around, 100%);
 }
 
-.buttons a {
+.buttons button {
     background: #2b2b2b;
     color: #fff;
     padding: 0.8rem 2rem;
     border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 footer {
@@ -55,10 +72,6 @@ footer {
     @include flexbox(center, center, 100%);
 }
 
-footer a {
-    background-image: url(../assets/GitHub_Logo.png);
-    width: 5rem;
-    height: 2rem;
-    background-repeat: no-repeat, repeat;
-    background-size: cover;
+footer img {
+    width: 4rem;
 }
