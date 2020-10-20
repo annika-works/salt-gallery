@@ -4,6 +4,8 @@ import axios from 'axios';
 import './styles/main.scss';
 import githubLogo from './assets/GitHub_Logo.png';
 
+// test
+
 const githubhandler = document.querySelector('footer img');
 const mainElement = document.querySelector('main');
 const searchBtn = document.querySelector('#search-btn');
