@@ -1,3 +1,5 @@
+:root { --time: 0.707s; }
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -88,9 +90,9 @@ main {
     flex-wrap: wrap;
 }
 
-main img {
-    padding: $padding-img;
-}
+// main img {
+//     padding: $padding-img;
+// }
 
 nav.buttons {
     @include flexbox(center, space-around, 100%);
@@ -132,70 +134,82 @@ footer img {
     width: 4rem;
 }
 
-//CARD
-label {
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    display: block;
-    width: 300px;
-    height: 200px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    cursor: pointer;
+// CARD
+
+
+.cards {
+  display: grid;
 }
 
 .card {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transition: all 600ms;
-    transition: all 600ms;
-    z-index: 20;
+  perspective: 40rem;
+  width: 400px;
 }
 
-    .card div {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        background: #FFF;
-        text-align: center;
-        line-height: 200px;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        border-radius: 2px;
-    }
+.card-body {
+  display: flex;
+  transform-style: preserve-3d;
+  transition: var(--time) transform;
 
-    .card .back {
-        background: #222;
-        color: #FFF;
-        -webkit-transform: rotateX(180deg);
-        transform: rotateX(180deg);
-    }
-
-label:hover .card {
-    -webkit-transform: rotateX(20deg);
-    transform: rotateX(20deg);
-    box-shadow: 0 20px 20px rgba(50,50,50,.2);
+  .card:hover &, .card:focus & {
+    transform: rotateY(-180deg);
+  }
 }
 
-input[type="checkbox"] {
-    display: none;
+.card-front, .card-back {
+  backface-visibility: hidden;
+  min-width: 100%;
 }
 
-:checked + .card {
-    transform: rotateX(180deg);
-    -webkit-transform: rotateX(180deg);
+.card-back {
+  transform: rotateX(-180deg) translate(-100%, 0) scale(-1, -1);
 }
 
-label:hover :checked + .card {
-    transform: rotateX(160deg);
-    -webkit-transform: rotateX(160deg);
-    box-shadow: 0 20px 20px rgba(255,255,255,.2);
+/* Make it Pretty */
+
+.cards {
+  grid-gap: 1.5rem;
+  grid-auto-rows: 1fr;
+  padding: 0 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.card {
+  transition: z-index, transform calc(var(--time) / 4);
+  transition-delay: var(--time), 0s;
+  text-decoration: none;
+  color: inherit;
+  z-index: 0;
+  
+  &:hover {
+    transition-delay: 0s;
+    z-index: 1;
+  }
+
+  &:active {
+    transform: scale(0.975);
+  }
+}
+
+.card-body {
+  border-radius: 0.25rem;
+  flex: 1;
+}
+
+.card-front, .card-back {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+}
+
+.card-back {
+    padding: 1rem;
+    background-color: $primary-color;
+    color: $white;
+}
+
+.card-front {
+  font-size: 1.5rem;
 }

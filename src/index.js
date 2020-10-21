@@ -43,14 +43,18 @@ const getImages = (dataSearch, dataPage) => {
       const { images } = data;
       checkPagination(data.prev, data.next);
       page = data.currentPage;
-      images.forEach(({ url }) => {
-        mainElement.innerHTML += `<label>
-        <input type="checkbox" />
-          <div class="card">
-            <div class="front"><img src=${url}></div>
-            <div class="back">Test</div>
+      images.forEach(({ url, author }) => {
+        mainElement.innerHTML += `<a class="card" href="#">
+        <div class="card-body">
+          <div class="card-front">
+            <img src=${url}>
           </div>
-        </label>`;
+    
+          <p class="card-back">
+            Instagram: ${author.instagram.username}
+          </p>
+        </div>
+      </a>`;
       });
     })
     .catch(error => {
