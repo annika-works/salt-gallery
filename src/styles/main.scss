@@ -7,6 +7,8 @@
   }
 
 $padding-img: 1rem;
+$primary-color: #2B2B2B;
+$white: #fff;
 
 @mixin flexbox ($align, $justify, $width) {
     display: flex;
@@ -15,13 +17,50 @@ $padding-img: 1rem;
     width: $width;
   }
 
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
 a {
     text-decoration: none;
 }
 
 header {
-    @include flexbox(center, center, 100%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+div.face {
+  position: relative;
+}
+
+div.iris {
+  position: absolute;
+  top: 23px;
+  left: 11px;
+  
+}
+
+div.iris-right {
+  left: 49px;
+}
+
+div.iris div {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #052837;
+  border-radius: 3px;
+  transform: translate(-50%,-50%);
+}
+
 
 nav {
     @include flexbox(center, center, 100%);
@@ -29,13 +68,20 @@ nav {
 }
 
 nav input[type="text"] {
-    background: #fff;
-    border: #FFF;
+    background: $white;
+    border: $white;
     border-bottom: 1px solid;
     border-radius: 2px;
     height: 22px;
-    width: 20rem;
+    width: 100px;
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
 }
+
+input[type=text]:focus {
+    width: 300px;
+    outline: none;
+  }
 
 main {
     @include flexbox(center, center, 100%);
@@ -50,19 +96,29 @@ nav.buttons {
     @include flexbox(center, space-around, 100%);
 }
 
-.buttons button {
-    background: #2b2b2b;
-    color: #fff;
-    padding: 0.8rem 2rem;
+.buttons button,
+nav input[type="submit"] {
+    font-family: 'Work Sans', sans-serif;
+    background: $primary-color;
+    color: $white;
+    padding: 0.5rem 2rem;
     border-radius: 25px;
     outline: none;
     cursor: pointer;
     border: none;
+    margin-left: 1rem;
+
+    transition: background-color 0.8s;
 }
 
 button:disabled {
     cursor: not-allowed;
     opacity: 0.5;
+}
+
+.buttons button:hover, 
+nav input[type="submit"]:hover {
+   background: #6f2da8;
 }
 
 footer {
