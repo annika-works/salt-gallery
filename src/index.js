@@ -44,7 +44,7 @@ const getImages = (dataSearch, dataPage) => {
       checkPagination(data.prev, data.next);
       page = data.currentPage;
       images.forEach(({ url }) => {
-        mainElement.innerHTML += `<img src=${url}>`;
+        mainElement.innerHTML += `<div class="flipcard-wrapper"><img src=${url}></div>`;
       });
     })
     .catch(error => {

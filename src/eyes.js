@@ -7,7 +7,7 @@ const moveEye = (tag, mouseX, mouseY) => {
 
   // find the difference between the eye and the mouse
   const diffX = mouseX - eyeMidX;
-  const diffY = mouseY - eyeMidY;
+  const diffY = mouseY - eyeMidY - window.pageYOffset;
 
   // pythagoras theorem
   const diff = Math.sqrt(diffX * diffX + diffY * diffY);
@@ -24,7 +24,7 @@ const moveEye = (tag, mouseX, mouseY) => {
   const eyeTag = tag.querySelector('div');
 
   eyeTag.style.left = `${cappedX}px`;
-  eyeTag.style.right = `${cappedY}px`;
+  eyeTag.style.top = `${cappedY}px`;
 };
 
 export default {
