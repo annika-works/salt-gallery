@@ -38,7 +38,7 @@ const checkPagination = (prevPage, nextPage) => {
 };
 
 const getImages = (dataSearch, dataPage) => {
-  axios.get(`http://192.168.35.223:8080/api/images/${dataSearch}?page=${dataPage}`)
+  axios.get(`https://agile-springs-56924.herokuapp.com/api/images/${dataSearch}?page=${dataPage}`)
     .then(({ data }) => {
       const { images } = data;
       checkPagination(data.prev, data.next);
