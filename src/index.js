@@ -3,8 +3,13 @@
 import axios from 'axios';
 import './styles/main.scss';
 import githubLogo from './assets/GitHub_Logo.png';
+import EyesImg from './assets/face-without-eyes.svg';
+import eye from './eyes';
 
 const githubhandler = document.querySelector('footer img');
+const eyeHandler = document.querySelector('.face img');
+const irisLeft = document.querySelector('div.iris-left');
+const irisRight = document.querySelector('div.iris-right');
 const mainElement = document.querySelector('main');
 const searchBtn = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#search-input');
@@ -12,6 +17,7 @@ const nextBtn = document.querySelector('#next-btn');
 const prevBtn = document.querySelector('#prev-btn');
 
 githubhandler.setAttribute('src', githubLogo);
+eyeHandler.setAttribute('src', EyesImg);
 
 let search = '';
 let page = 1;
@@ -61,6 +67,11 @@ nextBtn.addEventListener('click', () => {
 prevBtn.addEventListener('click', () => {
   clearPage();
   if (search) getImages(search, page - 1);
+});
+
+document.addEventListener('mousemove', event => {
+  eye.moveEye(irisLeft, event.pageX, event.pageY);
+  eye.moveEye(irisRight, event.pageX, event.pageY);
 });
 
 export default {
