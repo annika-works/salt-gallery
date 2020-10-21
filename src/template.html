@@ -2,9 +2,47 @@
 <html lang="en">
   <head>
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <header>
+        <div class="face">
+          <img>
+          <div class="iris iris-left">
+            <div></div>
+          </div>
+          <div class="iris iris-right">
+            <div></div>
+          </div>
+        </div>
+      </header>
+
+      <nav>
+        <form>
+          <input type= "text" id="search-input" list="suggestions" placeholder="Find images...">
+          <datalist id="suggestions">
+          </datalist>
+          <input type="submit" value="Search" id="search-btn">
+        </form>
+      </nav>
+
+      <main class="cards">
+        <!-- images go here -->
+      </main>
+
+      <nav class="buttons">
+        <button id="prev-btn">Prev</button>
+        <button id="next-btn">Next</button>
+      </nav>
+
+      <footer>
+        <img src="">
+        <a class="github" href="#"></a>
+      </footer>
+
+    </div>
   </body>
 </html>

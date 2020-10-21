@@ -1,3 +1,215 @@
+:root { --time: 0.707s; }
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+
+$padding-img: 1rem;
+$primary-color: #2B2B2B;
+$white: #fff;
+
+@mixin flexbox ($align, $justify, $width) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    width: $width;
+  }
+
 body {
-    background: white;
+    font-family: 'Work Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.face {
+  position: relative;
+}
+
+div.iris {
+  position: absolute;
+  top: 23px;
+  left: 11px;
+  
+}
+
+div.iris-right {
+  left: 49px;
+}
+
+div.iris div {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #052837;
+  border-radius: 3px;
+  transform: translate(-50%,-50%);
+}
+
+
+nav {
+    @include flexbox(center, center, 100%);
+    margin: 4rem 0;
+}
+
+nav input[type="text"] {
+    background: $white;
+    border: $white;
+    border-bottom: 1px solid;
+    border-radius: 2px;
+    height: 22px;
+    width: 100px;
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 300px;
+    outline: none;
+  }
+
+main {
+    @include flexbox(center, center, 100%);
+    flex-wrap: wrap;
+}
+
+// main img {
+//     padding: $padding-img;
+// }
+
+nav.buttons {
+    @include flexbox(center, space-around, 100%);
+}
+
+.buttons button,
+nav input[type="submit"] {
+    font-family: 'Work Sans', sans-serif;
+    background: $primary-color;
+    color: $white;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    margin-left: 1rem;
+
+    transition: background-color 0.8s;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.buttons button:hover, 
+nav input[type="submit"]:hover {
+   background: #6f2da8;
+}
+
+footer {
+    height: 2rem;
+    padding: $padding-img;
+    margin-bottom: 2rem;
+    @include flexbox(center, center, 100%);
+}
+
+footer img {
+    width: 4rem;
+}
+
+// CARD
+
+
+.cards {
+  display: grid;
+}
+
+.card {
+  perspective: 40rem;
+  width: 400px;
+}
+
+.card-body {
+  display: flex;
+  transform-style: preserve-3d;
+  transition: var(--time) transform;
+
+  .card:hover &, .card:focus & {
+    transform: rotateY(-180deg);
+  }
+}
+
+.card-front, .card-back {
+  backface-visibility: hidden;
+  min-width: 100%;
+}
+
+.card-back {
+  transform: rotateX(-180deg) translate(-100%, 0) scale(-1, -1);
+}
+
+/* Make it Pretty */
+
+.cards {
+  grid-gap: 1.5rem;
+  grid-auto-rows: 1fr;
+  padding: 0 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.card {
+  transition: z-index, transform calc(var(--time) / 4);
+  transition-delay: var(--time), 0s;
+  text-decoration: none;
+  color: inherit;
+  z-index: 0;
+  
+  &:hover {
+    transition-delay: 0s;
+    z-index: 1;
+  }
+
+  &:active {
+    transform: scale(0.975);
+  }
+}
+
+.card-body {
+  border-radius: 0.25rem;
+  flex: 1;
+}
+
+.card-front, .card-back {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+}
+
+.card-back {
+    padding: 1rem;
+    background-color: $primary-color;
+    color: $white;
+}
+
+.card-front {
+  font-size: 1.5rem;
 }
