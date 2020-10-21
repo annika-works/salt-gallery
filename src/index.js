@@ -4,8 +4,6 @@ import axios from 'axios';
 import './styles/main.scss';
 import githubLogo from './assets/GitHub_Logo.png';
 
-// test test
-
 const githubhandler = document.querySelector('footer img');
 const mainElement = document.querySelector('main');
 const searchBtn = document.querySelector('#search-btn');
@@ -15,49 +13,54 @@ const prevBtn = document.querySelector('#prev-btn');
 
 githubhandler.setAttribute('src', githubLogo);
 
-const baseUrl = 'https://api.unsplash.com/search/photos';
-const API_KEY = 'yX30oA4euofvCkZShYflX41XXG__CP6oiTaZ7AFa19w';
 let search = '';
 let page = 1;
-const maxItems = 10;
 
-const getImages = endpoint => axios.get(endpoint)
-  .then(({ data }) => {
-    console.log(data);
-    const { results } = data;
-    results.forEach(({ urls: images }) => {
-      mainElement.innerHTML += `<img src=${images.small}>`;
+const clearPage = () => {
+  mainElement.innerHTML = '';
+};
+
+const resetPagination = () => {
+  prevBtn.removeAttribute('disabled');
+  nextBtn.removeAttribute('disabled');
+};
+
+const checkPagination = (prevPage, nextPage) => {
+  resetPagination();
+  if (!prevPage) prevBtn.setAttribute('disabled', 'disabled');
+  if (!nextPage) nextBtn.setAttribute('disabled', 'disabled');
+};
+
+const getImages = (dataSearch, dataPage) => {
+  axios.get(`http://192.168.35.223:8080/api/images/${dataSearch}?page=${dataPage}`)
+    .then(({ data }) => {
+      const { images } = data;
+      checkPagination(data.prev, data.next);
+      page = data.currentPage;
+      images.forEach(({ url }) => {
+        mainElement.innerHTML += `<img src=${url}>`;
+      });
+    })
+    .catch(error => {
+      console.log(error);
     });
-  })
-  .catch(error => {
-    console.log(error);
-  });
-
-if (page <= 1) prevBtn.setAttribute('disabled', 'disabled');
+};
 
 searchBtn.addEventListener('click', e => {
   e.preventDefault();
-  page = 1;
+  clearPage();
   search = searchInput.value;
-  const endpoint = `${baseUrl}?per_page=${maxItems}&page=${page}&query=${search}&client_id=${API_KEY}`;
-  mainElement.innerHTML = '';
-  if (search) getImages(endpoint);
+  if (search) getImages(search, 1);
 });
 
 nextBtn.addEventListener('click', () => {
-  prevBtn.removeAttribute('disabled');
-  page += 1;
-  const endpoint = `${baseUrl}?per_page=${maxItems}&page=${page}&query=${search}&client_id=${API_KEY}`;
-  mainElement.innerHTML = '';
-  if (search) getImages(endpoint);
+  clearPage();
+  if (search) getImages(search, page + 1);
 });
 
 prevBtn.addEventListener('click', () => {
-  page -= 1;
-  if (page < 2) prevBtn.setAttribute('disabled', 'disabled');
-  const endpoint = `${baseUrl}?per_page=${maxItems}&page=${page}&query=${search}&client_id=${API_KEY}`;
-  mainElement.innerHTML = '';
-  if (search) getImages(endpoint);
+  clearPage();
+  if (search) getImages(search, page - 1);
 });
 
 export default {
