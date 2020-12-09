@@ -12,10 +12,8 @@ The Gallery is connected to the Unsplash API and allows a user to look for image
 
 ## Contributors
 
-[Alan Hajo](https://github.com/AlanoxSwe)
-
-[Annika Hallerberg](https://github.com/annika-works)
-
-[Jonmar Tamon](https://github.com/mar-veloper)
+[Alan Hajo](https://github.com/AlanoxSwe) <br/>
+[Annika Hallerberg](https://github.com/annika-works) <br/>
+[Jonmar Tamon](https://github.com/mar-veloper) <br/>
 
 This project was part of the 3 month bootcamp by the [School of Applied Technology Stockholm](www.salt.study)
